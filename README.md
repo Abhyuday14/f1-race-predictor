@@ -1,33 +1,143 @@
-🏎️ F1 Race Predictor App
-A Streamlit-based web application that predicts Formula 1 race outcomes based on qualifying times and historical performance using real-time data from the FastF1 API.
+🏁 F1 Race Predictor
 
-🔍 Overview
-This app allows you to:
 
-Select a race by year and Grand Prix name.
+This project predicts the finishing times of Formula 1 drivers based on qualifying times and historical race sector performance using machine learning.
+It uses the FastF1 API to gather race data and applies a Gradient Boosting Regressor model for predictions.
 
-Load actual driver data from the FastF1 API for that race.
 
-Manually input qualifying times for each driver.
+------------------------------------------------------------------------------------------
 
-Use a machine learning model (Gradient Boosting Regressor) to predict race performance.
+PROJECT STRUCTURE :
 
-View the predicted race order along with estimated race time.
+```
+f1-race-predictor/
+├── app.py                  # Streamlit UI 
+├── main.py                 # Core ML logic and data loading
+├── f1_cache/               # FastF1 cache directory (created automatically)
+├── requirements.txt        # Dependencies
+└── README.md               # Documentation
+```
 
-🚀 How It Works
-You enter the race year and Grand Prix name (e.g., China, Bahrain).
 
-The app loads lap data from that race using FastF1 and displays all drivers.
 
-You enter each driver’s qualifying time (in seconds).
+------------------------------------------------------------------------------------------
 
-The app trains a model based on historical lap data and uses it to predict each driver's race time.
+🔧 Clone the Repository
 
-The results are displayed in the predicted order of finish, along with the model's accuracy (MAE).
 
-🛠️ Tech Stack
-Frontend: Streamlit
+git clone https://github.com/yourusername/f1-race-predictor.git
 
-Backend: FastF1, scikit-learn
 
-Language: Python 3
+cd f1-race-predictor
+
+------------------------------------------------------------------------------------------
+
+📦 Create Virtual Environment (Recommended)
+
+python -m venv venv
+
+
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+
+------------------------------------------------------------------------------------------
+
+🛠️ Install Dependencies
+
+
+pip install -r requirements.txt
+
+
+
+
+------------------------------------------------------------------------------------------
+
+📦 Dependencies
+
+
+You can also install packages manually if needed:
+
+
+pip install streamlit fastf1 scikit-learn pandas numpy
+
+
+------------------------------------------------------------------------------------------
+
+🚀 How to Run <br/>
+
+🌐 Launch the Streamlit App </br>
+
+
+streamlit run app.py
+
+
+
+------------------------------------------------------------------------------------------
+
+🧠 How It Works:
+
+
+User Input: You select the race year and race name.
+
+
+Driver Fetch: FastF1 pulls all driver codes from the selected race.
+
+
+Qualifying Input: You enter each driver’s qualifying time (in seconds).
+
+
+Data Merge: The app fetches historical sector times and merges them with qualifying input.
+
+
+Model Training: A Gradient Boosting Regressor is trained using lap and sector time data.
+
+
+Prediction: Race times are predicted, sorted, and displayed.
+
+
+
+------------------------------------------------------------------------------------------
+
+❓ Example Use
+
+
+Choose 2024 as year
+
+
+Enter race name: China
+
+
+Wait for drivers to load automatically
+
+
+Enter each driver’s qualifying time
+
+
+Click "🔮 Predict Race Results" to view predictions.
+
+
+
+------------------------------------------------------------------------------------------
+
+👨‍💻 Developer Info
+
+
+Language: Python 3.8+
+
+
+Libraries: FastF1, Streamlit, scikit-learn, pandas, numpy
+
+
+Model: GradientBoostingRegressor
+
+
+
+
+
+
+
+
+
+
+
+
