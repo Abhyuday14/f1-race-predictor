@@ -1,6 +1,10 @@
 import streamlit as st
 import pandas as pd
+import fastf1
 from main import load_race_data, train_model, driver_mapping
+
+# Enable FastF1 cache early
+fastf1.Cache.enable_cache('f1_cache')
 
 st.set_page_config(page_title="F1 Race Predictor", page_icon="🏎️")
 
@@ -22,7 +26,7 @@ for driver in driver_mapping:
         except ValueError:
             st.warning(f"⚠️ Invalid input for {driver}")
 
-# --- Predict Button ---
+# Predict Button
 if st.button("🔮 Predict Race Results") and quali_data:
     try:
         with st.spinner("Loading race data..."):
@@ -31,10 +35,11 @@ if st.button("🔮 Predict Race Results") and quali_data:
         quali_df = pd.DataFrame(quali_data)
         results, mae = train_model(laps, quali_df, sector_times)
 
-        st.success(f"✅ Prediction complete for {race_name} GP {year+1}!")
-        st.subheader("🏆 Predicted Race Results")
-        st.dataframe(results[["Driver", "QualifyingTime (s)", "PredictedRaceTime (s)"]])
+        results = results.sort_values(by="PredictedRaceTime (s)")
 
+        st.success(f"✅ Prediction complete for {race_name} GP {year+1}!")
+        st.subheader("🌟 Predicted Race Results")
+        st.dataframe(results[["Driver", "QualifyingTime (s)", "PredictedRaceTime (s)"]])
         st.markdown(f"📊 **Model MAE (Mean Absolute Error)**: `{mae:.2f}` seconds")
 
     except Exception as e:
