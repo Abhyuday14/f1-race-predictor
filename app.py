@@ -8,7 +8,7 @@ st.title("🏁 F1 Race Predictor")
 st.markdown("Predict race results based on qualifying times and past performance.")
 
 # --- User Input ---
-year = st.number_input("Enter the race year:", min_value=2018, max_value=2025, value=2024)
+year = st.number_input("Enter the race year:", min_value=2024, max_value=2025, value=2024)
 race_name = st.text_input("Enter the race name:", value="China").title()
 
 # Qualifying Times Input
